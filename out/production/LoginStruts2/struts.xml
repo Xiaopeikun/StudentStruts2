@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="struts_tag" extends="struts-default" namespace="/">
+
+        <!-- 自定义拦截器 -->
+        <interceptors>
+            <interceptor name="myInterceptor" class="com.baconic.interceptors.LoginInterceptors"/>
+            <interceptor-stack name="myDefaultStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="myInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="myDefaultStack"/>
+        <global-results>
+            <result name="login" type="redirect">/Login.jsp</result>
+        </global-results>
+
+        <action name="checkLogin" class="com.baconic.action.LoginAction">
+            <result name="success">/menu.jsp</result>
+            <result name="login">/index.jsp</result>
+        </action>
+
+        <action name="regist" class="com.baconic.action.RegistAction"
+                method="checkRegist">
+            <result type="dispatcher" name="success">/index.jsp</result>
+            <result name="regist">/Regist.jsp</result>
+        </action>
+
+        <action name="findList" class="com.baconic.student.StudentAction" method="findList">
+            <result name="list" >/StuInfo.jsp</result>
+        </action>
+
+        <action name="delete" class="com.baconic.student.StudentAction" method="delete">
+            <result name="del" type="redirectAction">findList</result>
+        </action>
+
+        <action name="add" class="com.baconic.student.StudentAction" method="add">
+            <result name="add" type="redirectAction">findList</result>
+        </action>
+
+        <action name="toupdate" class="com.baconic.student.StudentAction" method="toupdate">
+            <result name="toupdate" >/update.jsp</result>
+        </action>
+
+        <action name="update" class="com.baconic.student.StudentAction" method="update">
+            <result name="update" type="redirectAction">findList</result>
+        </action>
+
+    </package>
+        <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+</struts>

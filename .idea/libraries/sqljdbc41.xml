@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sqljdbc41">
+    <CLASSES>
+      <root url="jar://D:/SE001/Lib/sqlserver_lib/sqljdbc41.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
